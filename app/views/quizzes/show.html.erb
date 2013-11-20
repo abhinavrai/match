@@ -1,0 +1,66 @@
+<script>
+
+$(document).ready(function() {
+
+	var $modal = $('#full-width');
+
+	$('.ajax .aj-inst').on('click', function(){
+	// create the backdrop and wait for next modal to be triggered
+
+		$('body').modalmanager('loading');
+		setTimeout(function(){
+			$modal.load('/quiz?quizId=<%= @quiz.id %>', '', function(){
+				$modal.modal();
+			});
+		}, 1000);
+	});
+});
+
+</script>
+
+<%- model_class = Quiz -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+
+<div class="form-actions">
+<% if can? :manage, @quiz %>
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              quizzes_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_quiz_path(@quiz), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              quiz_path(@quiz),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+<% else %>
+  <div class="ajax"><%= button_tag "Start Quiz", :href => '/', :class => 'aj-inst btn btn-primary', :style => 'color: rgb(255, 255, 255); background-color: rgb(86, 158, 61); background-image: linear-gradient(rgb(121, 216, 88), rgb(86, 158, 61)); background-repeat: repeat-x; border-color: rgb(74, 153, 62);' %></div>
+<% end %>
+</div>
+
+<div style="display: block; text-align: justify; margin: 0px auto; padding: 10px 40px 10px 0px; border:1px solid rgb(238, 238, 238);">
+  <table class="table table-striped" style="margin: auto;">
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+  <dd><%= @quiz.name %></dd>
+<br />
+  <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
+  <dd><%= @quiz.description %></dd>
+<br />
+  <dt><strong><%= model_class.human_attribute_name(:quiz_stream) %>:</strong></dt>
+  <dd><%= @quiz.quiz_stream %></dd>
+<br />
+  <dt><strong><%= model_class.human_attribute_name(:no_of_questions) %>:</strong></dt>
+  <dd><%= @quiz.no_of_questions %></dd>
+<br />
+  <dt><strong><%= model_class.human_attribute_name(:quiz_time) %>:</strong></dt>
+  <dd><%= @quiz.quiz_time %></dd>
+<br />
+  <dt><strong><%= model_class.human_attribute_name(:quiz_status) %>:</strong></dt>
+  <dd><%= @quiz.quiz_status %></dd>
+</dl>
+</table>
+</div>
+
+<div id="full-width" class="modal container hide fade" tabindex="-1"></div>

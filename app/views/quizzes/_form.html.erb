@@ -1,0 +1,44 @@
+<%= form_for @quiz, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :description, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :description, :class => 'text_area', :rows => '7' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :quiz_stream, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :quiz_stream, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :no_of_questions, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :no_of_questions, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :quiz_time, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :quiz_time, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :quiz_status, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.check_box :quiz_status, :class => 'check_box' %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                quizzes_path, :class => 'btn' %>
+  </div>
+<% end %>

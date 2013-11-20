@@ -1,0 +1,10 @@
+Application: FaceMatch
+Description: Application would a quiz to select the name of the person in the picture.
+Acceptance Criteria:
+
+1. Manage Person profiles with their picture.
+2. On Starting the quiz, Picture should appear with four name options as a quiz.
+3. Submiting the answer will verify the answer with the profile details of the person in picture.
+4. Sequence of picture should be random each time.
+5. User can opt to see next picture or close the quiz.
+6. Closing the quiz will give a final score.

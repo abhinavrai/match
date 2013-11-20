@@ -1,0 +1,47 @@
+<script>
+
+$(document).ready(function() {
+	$("#ajaxButton").click(function(){
+		var data= {
+			"quizId" : <%= @quiz.id %>,
+			"option" : "none",
+			"selection" : "none"
+		};
+		$.get("/questions", data, function(result, status){
+			$("#ajaxDiv").html(result);
+		});
+	});
+});
+
+</script>
+
+<div id="ajaxDiv">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		<h3>It's time to see what you have learnt. Read the following instructions carefully</h3>
+	</div>
+	 <div class="modal-body" style="display: block; height:400px;">
+	<div><b>General:</b></div>
+	<ol>
+	<li>You have <b><%= @quiz.quiz_time %> minutes</b> to complete this quiz.</li>
+	<li>Number of questions in this quiz are <%= @quiz.no_of_questions %>.</li>
+	</ol>
+	<div><b>Marking:</b></div>
+	<ol>
+	<li>Once marked an option for a question, you can change your response but can't clear it. So, mark your response carefully.</li>
+	<li>For every correct answer, (+) 4 marks will be awarded.</li>
+	<li>For every incorrect answer, (-) 1 mark will be deducted.</li>
+	<li>For unattempted questions, no marks will be awarded nor deducted.</li>
+	</ol>
+	<div><b>System Specific:</b></div>
+	<ol>
+	<li>In case of a system shutdown due to un-avoidable reasons. Your quiz will automatically saved on the server and you will be able to take the quiz within a span of 10 minutes from this same terminal. The quiz timer will start from where you left it.</li>
+	<li>You are not allowed to refresh the quiz at any point of time. For your own security, keyboard and right-click will remain disabled during the quiz.</li>
+	</ol>
+	<hr />
+	<center><div><h2>All the best!</h2></div></center><hr />
+	</div>
+	<div class="modal-footer">
+		<div style="margin: auto;"><button type="button" id="ajaxButton" class="btn" style="display: block; margin: auto; color: rgb(255, 255, 255); background-color: rgb(86, 158, 61); background-image: linear-gradient(rgb(121, 216, 88), rgb(86, 158, 61)); background-repeat: repeat-x; border-color: rgb(74, 153, 62);">I have read the instructions and want to continue to the quiz</button></div>
+	</div>
+</div>

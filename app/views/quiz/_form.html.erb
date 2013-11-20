@@ -1,0 +1,12 @@
+<%= form_for @question, :html => { :class => 'form-horizontal' } do |f| %>
+
+<%= image_tag @profile.picture.url(:medium) %>
+
+<div><input type="radio" id="optionA" name="option"><%= @question.optionA %></input></div><br />
+<div><input type="radio" id="optionB" name="option"><%= @question.optionB %></input></div><br />
+<div><input type="radio" id="optionC" name="option"><%= @question.optionC %></input></div><br />
+<div><input type="radio" id="optionD" name="option"><%= @question.optionD %></input></div><br />
+
+<% end %>
+
+<%= session[:index] += 1 %>

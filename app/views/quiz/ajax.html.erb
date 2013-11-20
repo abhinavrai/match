@@ -1,0 +1,54 @@
+<script>
+$(document).ready(function() {
+
+
+
+	$("#ajaxButtonPrev").click(function(){
+		var data= {
+			"quizId" : <%= @quiz.id %>,
+			"option" : "none",
+			"selection" : "none"
+		};
+		$.get("/question", data, function(result, status){
+			$("#questionsDiv").html(result);
+		});
+	});
+
+	$("#ajaxButtonSub").click(function(){
+		var data= {
+			"quizId" : <%= @quiz.id %>,
+			"option" : "none",
+			"selection" : "none"
+		};
+		$.get("/question", data, function(result, status){
+			$("#questionsDiv").html(result);
+		});
+	});
+
+	$("#ajaxButtonNext").click(function(){
+		var data= {
+			"quizId" : <%= @quiz.id %>,
+			"option" : "none",
+			"selection" : "none"
+		};
+		$.get("/question", data, function(result, status){
+			$("#questionsDiv").html(result);
+		});
+	});
+
+});
+</script>
+
+	<div class="modal-header">
+		<h4>Objective: Identify the person in the picture</h4>
+	</div>
+	 <div class="modal-body" style="display: block; height:400px;">
+	 	<div id="questionsDiv">
+
+	 		<%= render 'form' %>
+
+	 	</div>
+	</div>
+<div class="modal-footer">
+	<div style="width: 297px; margin: auto;"><button type="button" id="ajaxButtonPrev" class="btn" style="display: inline-block;"><b>&#10096;</b></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" id="ajaxButtonSub" class="btn green" style="display: inline-block; margin: auto; color: rgb(255, 255, 255); background-color: rgb(86, 158, 61); background-image: linear-gradient(rgb(121, 216, 88), rgb(86, 158, 61)); background-repeat: repeat-x; border-color: rgb(74, 153, 62);">Save &amp; Continue</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" id="ajaxButtonNext" class="btn " style="display: inline-block;">&#10097;</button></div>
+</div>

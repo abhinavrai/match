@@ -1,0 +1,20 @@
+<script>
+$(document).ready(function() {
+	$("#ajaxButton2").click(function(){
+		$.post("/questions", function(result, status){
+			$("#ajaxDiv").html(result);
+		});
+	});
+
+});
+</script>
+
+	<div class="modal-header">
+		<h4>Question #:</h4>
+	</div>
+	 <div class="modal-body" style="display: block; height:400px;">
+<h1><%= session[:inc] %></h1>
+	</div>
+	<div class="modal-footer">
+		<div style="margin: auto;"><button type="button" id="ajaxButton2" class="btn" style="display: block; margin: auto; color: rgb(255, 255, 255); background-color: rgb(86, 158, 61); background-image: linear-gradient(rgb(121, 216, 88), rgb(86, 158, 61)); background-repeat: repeat-x; border-color: rgb(74, 153, 62);">I was fetched using AJAX</button></div>
+	</div>

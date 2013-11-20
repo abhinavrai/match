@@ -1,0 +1,43 @@
+<script>
+$(document).ready(function() {
+
+
+
+	$("#ajaxButtonPrev").click(function(){
+		var data= {
+			"quizId" : <%= @quiz.id %>,
+			"option" : "none",
+			"selection" : "none"
+		};
+		$.get("/question", data, function(result, status){
+			$("#questionsDiv").html(result);
+		});
+	});
+
+	$("#ajaxButtonSub").click(function(){
+		var data= {
+			"quizId" : <%= @quiz.id %>,
+			"option" : "none",
+			"selection" : "none"
+		};
+		$.get("/question", data, function(result, status){
+			$("#questionsDiv").html(result);
+		});
+	});
+
+	$("#ajaxButtonNext").click(function(){
+		var data= {
+			"quizId" : <%= @quiz.id %>,
+			"option" : "none",
+			"selection" : "none"
+		};
+		$.get("/question", data, function(result, status){
+			$("#questionsDiv").html(result);
+		});
+	});
+
+});
+</script>
+
+
+<%= render 'form' %>

@@ -1,0 +1,42 @@
+<%- model_class = Quiz -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:quiz_stream) %></th>
+      <th><%= model_class.human_attribute_name(:no_of_questions) %></th>
+      <th><%= model_class.human_attribute_name(:quiz_time) %></th>
+      <th><%= model_class.human_attribute_name(:quiz_status) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @quizzes.each do |quiz| %>
+      <tr>
+        <td><%= quiz.id%></td>
+        <td><%= link_to quiz.name, quiz_path(quiz) %></td>
+        <td><%= quiz.quiz_stream %></td>
+        <td><%= quiz.no_of_questions %></td>
+        <td><%= quiz.quiz_time %></td>
+        <td><%= quiz.quiz_status %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_quiz_path(quiz), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      quiz_path(quiz),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_quiz_path,
+            :class => 'btn btn-primary' %>

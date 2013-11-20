@@ -1,0 +1,14 @@
+class QuizController < ApplicationController
+	def index
+		if request.xhr?
+			@quiz = Quiz.find(params[:quizId])
+			@questions = Profile.all
+		end
+	end
+
+	def ajax
+		if request.xhr?
+			session[:arr] = [1, 2, 3, 4, 5]
+		end
+	end
+end
